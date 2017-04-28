@@ -63,6 +63,11 @@ Writes/updates item profile data.
 
 Writes/updates transaction data.
 
+`lumidatumclient.LumidatumClient.getLTVReportDates(latest=False)`
+
+Gets a list of timestamps indicating when LTV reports for a given model were generated.
+If `latest` is set to `True`, a single timestamp string will be returned. 
+
 `lumidatumclient.LumidatumClient.getLatestLTVReport(download_file_path, zipped=True, stream_download=True)`
 
 Gets the latest user lifetime value report.
@@ -72,6 +77,11 @@ Gets the latest user lifetime value report.
 `zipped` should be a boolean value indicating whether or not to download a zipped version of the requested report.
 
 `stream_download` should be a boolean value indicating whether or not to read the entire requested report into memory upon download while writing to the specified file path.
+
+`lumidatumclient.LumidatumClient.getSegmentationReportDates(latest=False)`
+
+Gets a list of timestamps indicating when segmentation reports for a given model were generated.
+If `latest` is set to `True`, a single timestamp string will be returned. 
 
 `lumidatumclient.LumidatumClient.getLatestSegmentationReport(download_file_path, zipped=True, stream_download=True)`
 
