@@ -153,18 +153,18 @@ class LumidatumClient(object):
 
         return response
 
-    def getLTVReportDates(self, model_id=None, zipped=True, latest=False):
+    def getLTVReportDates(self, model_id=None, zipped=False, latest=False):
 
-        return self.getAvailableReports('LTV', model_id, zipped=True, latest=latest, return_dates=True)
+        return self.getAvailableReports('LTV', model_id, zipped=zipped, latest=latest, return_dates=True)
 
     def getLatestLTVReport(self, download_file_path, model_id=None, zipped=True, stream_download=True):
         latest_report_key_name = self.getAvailableReports('LTV', model_id, zipped)
 
         return self.getReport(latest_report_key_name, download_file_path, model_id, stream_download=stream_download)
 
-    def getSegmentationReportDates(self, model_id=None, zipped=True, latest=False):
+    def getSegmentationReportDates(self, model_id=None, zipped=False, latest=False):
 
-        return self.getAvailableReports('SEG', model_id, zipped=True, latest=latest, return_dates=True)
+        return self.getAvailableReports('SEG', model_id, zipped=zipped, latest=latest, return_dates=True)
 
     def getLatestSegmentationReport(self, download_file_path, zipped=True, model_id=None, stream_download=True):
         latest_report_key_name = self.getAvailableReports('SEG', model_id, zipped)
