@@ -69,11 +69,13 @@ Gets a list of timestamps indicating when LTV reports for a given model were gen
 If `zipped` is set to `True`, only (a) timestamp(s) for zipped reports will be returned, otherwise all timestamps are for non-zipped reports available for download.
 If `latest` is set to `True`, a single timestamp string will be returned. 
 
-`lumidatumclient.LumidatumClient.getLatestLTVReport(download_file_path, zipped=True, stream_download=True)`
+`lumidatumclient.LumidatumClient.getLatestLTVReport(download_file_path, sub_type=None, zipped=True, stream_download=True)`
 
 Gets the latest user lifetime value report.
 
 `download_file_path` should be a string and will also be used to set the file name of the download.
+
+`sub_type` should be a string. An optional parameter specifying custom report types within a given report type (LTV/SEG) to download.
 
 `zipped` should be a boolean value indicating whether or not to download a zipped version of the requested report.
 
@@ -85,7 +87,7 @@ Gets a list of timestamps indicating when segmentation reports for a given model
 If `zipped` is set to `True`, only (a) timestamp(s) for zipped reports will be returned, otherwise all timestamps are for non-zipped reports available for download.
 If `latest` is set to `True`, a single timestamp string will be returned. 
 
-`lumidatumclient.LumidatumClient.getLatestSegmentationReport(download_file_path, zipped=True, stream_download=True)`
+`lumidatumclient.LumidatumClient.getLatestSegmentationReport(download_file_path, sub_type=None, zipped=True, stream_download=True)`
 
 Gets the latest user segmentation report.
 
