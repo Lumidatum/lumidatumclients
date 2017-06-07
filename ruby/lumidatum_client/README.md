@@ -6,7 +6,7 @@ To get the client in Ruby simply run:
 
 `gem install lumidatum_client`
 
-<i>Latest version: 0.1.5</i>
+<i>Latest version: 0.1.6</i>
 
 <i>*Currently Ruby version 2.4.0 is supported</i>
 
@@ -59,7 +59,7 @@ Writes/updates item profile data.
 
 Writes/updates transaction data.
 
-`LumidatumClient.getLatestLTVReport(download_file_path, zipped: True)`
+`LumidatumClient.getLatestLtvReport(download_file_path, zipped: True)`
 
 Gets the latest user lifetime value report.
 

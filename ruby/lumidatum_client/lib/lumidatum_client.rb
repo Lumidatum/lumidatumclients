@@ -91,10 +91,10 @@ class LumidatumClient
   end
 
   # File download
-  def getLatestLTVReport(download_file_path, model_id: nil, zipped: true, stream_download: true)
+  def getLatestLtvReport(download_file_path, sub_type: nil, model_id: nil, zipped: true, stream_download: true)
     model_id = _getModelIdOrError(model_id)
 
-    latest_key_name = getAvailableReports("LTV", model_id, zipped: zipped)
+    latest_key_name = getAvailableReports("LTV", sub_type, model_id, zipped: zipped)
 
     presigned_response_object = getPresignedResponse(latest_key_name, model_id, is_download: true)
 
@@ -106,10 +106,10 @@ class LumidatumClient
     return report_response
   end
 
-  def getLatestSegmentationReport(download_file_path, model_id: nil, zipped: true, stream_download: true)
+  def getLatestSegmentationReport(download_file_path, sub_type: nil, model_id: nil, zipped: true, stream_download: true)
     model_id = _getModelIdOrError(model_id)
 
-    latest_key_name = getAvailableReports("SEG", model_id, zipped: zipped)
+    latest_key_name = getAvailableReports("SEG", sub_type, model_id, zipped: zipped)
     presigned_response_object = getPresignedResponse(latest_key_name, model_id, is_download: true)
 
     report_response = @http_client.get(presigned_response_object["url"])
@@ -120,8 +120,8 @@ class LumidatumClient
     return report_response
   end
 
-  def getAvailableReports(report_type, model_id, zipped: true, latest: true)
-    url_query_parameters = {:model_id => model_id, :report_type => report_type, :zipped => zipped, :latest => true}
+  def getAvailableReports(report_type, sub_type, model_id, zipped: true, latest: true)
+    url_query_parameters = {:model_id => model_id, :report_type => report_type, :sub_type => sub_type, :zipped => zipped, :latest => true}
     list_reports_response = api("GET", "api/data", url_query_parameters, model_id, deserialize_response: false)
     list_reports_response_object = JSON.parse(list_reports_response.body)
 
