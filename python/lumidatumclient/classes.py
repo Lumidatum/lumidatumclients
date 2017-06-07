@@ -153,32 +153,33 @@ class LumidatumClient(object):
 
         return response
 
-    def getLTVReportDates(self, model_id=None, zipped=False, latest=False):
+    def getLTVReportDates(self, sub_type=None, model_id=None, zipped=False, latest=False):
 
-        return self.getAvailableReports('LTV', model_id, zipped=zipped, latest=latest, return_dates=True)
+        return self.getAvailableReports('LTV', sub_type, model_id, zipped=zipped, latest=latest, return_dates=True)
 
-    def getLatestLTVReport(self, download_file_path, model_id=None, zipped=True, stream_download=True):
-        latest_report_key_name = self.getAvailableReports('LTV', model_id, zipped)
-
-        return self.getReport(latest_report_key_name, download_file_path, model_id, stream_download=stream_download)
-
-    def getSegmentationReportDates(self, model_id=None, zipped=False, latest=False):
-
-        return self.getAvailableReports('SEG', model_id, zipped=zipped, latest=latest, return_dates=True)
-
-    def getLatestSegmentationReport(self, download_file_path, zipped=True, model_id=None, stream_download=True):
-        latest_report_key_name = self.getAvailableReports('SEG', model_id, zipped)
+    def getLatestLTVReport(self, download_file_path, sub_type=None, model_id=None, zipped=True, stream_download=True):
+        latest_report_key_name = self.getAvailableReports('LTV', sub_type, model_id, zipped)
 
         return self.getReport(latest_report_key_name, download_file_path, model_id, stream_download=stream_download)
 
-    def getAvailableReports(self, report_type, model_id, zipped=True, latest=True, return_dates=False):
+    def getSegmentationReportDates(self, sub_type=None, model_id=None, zipped=False, latest=False):
+
+        return self.getAvailableReports('SEG', sub_type, model_id, zipped=zipped, latest=latest, return_dates=True)
+
+    def getLatestSegmentationReport(self, download_file_path, sub_type=None, zipped=True, model_id=None, stream_download=True):
+        latest_report_key_name = self.getAvailableReports('SEG', sub_type, model_id, zipped)
+
+        return self.getReport(latest_report_key_name, download_file_path, model_id, stream_download=stream_download)
+
+    def getAvailableReports(self, report_type, sub_type, model_id, zipped=True, latest=True, return_dates=False):
         selected_model_id = str(model_id) if model_id else self.model_id
 
         list_reports_response = requests.get(
-            '{}/api/data?model_id={}&report_type={}&zipped={}&latest={}&return_dates={}'.format(
+            '{}/api/data?model_id={}&report_type={}&sub_type={}&zipped={}&latest={}&return_dates={}'.format(
                 self.host_address,
                 selected_model_id,
                 report_type,
+                sub_type,
                 zipped,
                 latest,
                 return_dates
