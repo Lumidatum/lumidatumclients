@@ -61,6 +61,12 @@ class LumidatumClient
     return sendData("transactions", data_string, file_path, model_id)
   end
 
+  def sendFeedbackData(data_string: nil, file_path: nil, model_id: nil)
+    model_id = _getModelIdOrError(model_id)
+
+    return sendData("feedback", data_string, file_path, model_id)
+  end
+
   def sendData(data_type, data_string, file_path, model_id)
     model_id = _getModelIdOrError(model_id)
 
@@ -121,7 +127,12 @@ class LumidatumClient
   end
 
   def getAvailableReports(report_type, sub_type, model_id, zipped: true, latest: true)
-    url_query_parameters = {:model_id => model_id, :report_type => report_type, :sub_type => sub_type, :zipped => zipped, :latest => true}
+    if sub_type
+      url_query_parameters = {:model_id => model_id, :report_type => report_type, :sub_type => sub_type, :zipped => zipped, :latest => true}
+    else
+      url_query_parameters = {:model_id => model_id, :report_type => report_type, :zipped => zipped, :latest => true}
+    end
+
     list_reports_response = api("GET", "api/data", url_query_parameters, model_id, deserialize_response: false)
     list_reports_response_object = JSON.parse(list_reports_response.body)
 

@@ -115,7 +115,7 @@ class UploadDataFiles < Minitest::Test
     @test_client = createTestClient
   end
 
-  def test_sending_file
+  def test_sending_transactions_file
     setupValidUploadResponses
 
     file_upload_response = @test_client.sendTransactionData(file_path: "tests/resources/test_data.csv")
@@ -173,7 +173,7 @@ class DownloadReports < Minitest::Test
 
     # Raises error for 404 response on list call
     assert_raises IOError do
-      file_download_response = @test_client.getLatestLTVReport("test_download_file.csv")
+      file_download_response = @test_client.getLatestLtvReport("test_download_file.csv")
     end
   end
 
@@ -196,7 +196,7 @@ class DownloadReports < Minitest::Test
     # S3 download response
     WebMock.stub_request(:get, "http://test.download.url")
 
-    file_download_response = @test_client.getLatestLTVReport("test_download_file.csv")
+    file_download_response = @test_client.getLatestLtvReport("test_download_file.csv")
 
     assert_equal(200, file_download_response.status)
 
