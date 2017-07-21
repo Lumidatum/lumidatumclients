@@ -140,6 +140,14 @@ class UploadDataFiles < Minitest::Test
 
     assert_equal(204, file_upload_response.status)
   end
+
+  def test_sending_feedback_file
+    setupValidUploadResponses
+
+    file_upload_response = @test_client.sendTransactionData(file_path: "tests/resources/test_data.csv")
+
+    assert_equal(204, file_upload_response.status)
+  end
 end
 
 class SendDataString < Minitest::Test
