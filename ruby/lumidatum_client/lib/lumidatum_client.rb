@@ -150,7 +150,7 @@ class LumidatumClient
   end
 
   def getPresignedResponse(key_name, model_id, data_type: nil, file_name: nil, file_size: nil, is_download: false)
-    parameters = {"model_id": model_id}
+    parameters = {"model_id" => model_id}
 
     if is_download
       parameters["key_name"] = key_name
